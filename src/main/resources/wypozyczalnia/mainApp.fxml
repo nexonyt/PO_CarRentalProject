@@ -11,6 +11,9 @@
     <!-- Label wyświetlający powitanie i status wynajmu -->
     <Label fx:id="label" layoutX="100" layoutY="30" text="Witaj w wypożyczalni samochodów!" />
 
+    <!-- Label wyświetlający powitanie i status wynajmu -->
+    <Label fx:id="labelForRentalUser" layoutX="100" layoutY="290" text="Podaj dane osoby wypożyczającej:" />
+
     <!-- Lista dostępnych pojazdów (samochodów i motocykli) -->
     <ListView fx:id="vehicleListView" layoutX="100" layoutY="70" prefWidth="450" prefHeight="200" />
 
@@ -27,7 +30,7 @@
     <Button fx:id="rentCarButton" text="Wynajmij pojazd" layoutX="100" layoutY="450" onAction="#handleRentCar" />
 
     <!-- Przycisk do pokazania szczegółów pojazdu -->
-    <Button fx:id="showAllVehicleInfo" text="Pokaż szczegóły pojazdu" layoutX="100" layoutY="290" onAction="#showVehicleDetails" />
+    <Button fx:id="showAllVehicleInfo" text="Pokaż szczegóły pojazdu" layoutX="350" layoutY="290" onAction="#showVehicleDetails" />
 
     <!-- Przycisk do odbioru wynajętego samochodu -->
     <Button fx:id="getRentedCarButton" text="Odbierz pojazd" layoutX="600" layoutY="300" onAction="#handleGetRentedCarButton" />
@@ -42,7 +45,7 @@
     <Label fx:id="clientDetailsLabel" layoutX="600" layoutY="320" prefWidth="300" prefHeight="100" text="" wrapText="true" />
 
     <!-- Label do wyświetlania szczegółów pojazdu -->
-    <Label fx:id="vehicleInfoTextArea" layoutX="300" layoutY="280" prefWidth="300" prefHeight="100" text="" wrapText="true" />
+    <Label fx:id="vehicleInfoTextArea" layoutX="350" layoutY="330" prefWidth="300" prefHeight="100" text="" wrapText="true" />
 
     <!--    Blokada użytkownika-->
     <Button fx:id="blockClientButton" layoutX="820" layoutY="300" text="Zablokuj klienta" onAction="#handleBlockClient"/>

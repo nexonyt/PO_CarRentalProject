@@ -99,7 +99,7 @@ public class WypozyczalniaController {
                     }
 
                     String name = nameTextField.getText();
-                    String surname = nameTextField.getText();
+                    String surname = surnameTextField.getText();
                     String driversLicenseNumber = driversLicenseTextField.getText();
 
                     if (driversLicenseNumber.length() < 6) {
