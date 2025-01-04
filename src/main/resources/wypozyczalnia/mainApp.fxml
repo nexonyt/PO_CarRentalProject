@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+
+<!-- MK: Comments in Polish language for better understaning -->
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.rental.controller.WypozyczalniaController">
+    <!-- Label wyświetlający powitanie i status wynajmu -->
+    <Label fx:id="label" layoutX="100" layoutY="30" text="Witaj w wypożyczalni samochodów!" />
+
+    <!-- Lista dostępnych pojazdów (samochodów i motocykli) -->
+    <ListView fx:id="vehicleListView" layoutX="100" layoutY="70" prefWidth="300" prefHeight="200" />
+
+    <!-- Lista wypożyczonych pojazdów (samochodów i motocykli) -->
+    <ListView fx:id="vehicleRentedListView" layoutX="600" layoutY="70" prefWidth="300" prefHeight="200" />
+
+    <!-- Pola do wprowadzania danych klienta -->
+    <TextField fx:id="nameTextField" layoutX="100" layoutY="320" promptText="Imię"/>
+    <TextField fx:id="surnameTextField" layoutX="100" layoutY="350" promptText="Nazwisko"/>
+    <TextField fx:id="ageTextField" layoutX="100" layoutY="380" promptText="Wiek"/>
+    <TextField fx:id="driversLicenseTextField" layoutX="100" layoutY="410" promptText="Numer prawa jazdy"/>
+
+    <!-- Przycisk do wynajęcia samochodu -->
+    <Button fx:id="rentCarButton" text="Wynajmij pojazd" layoutX="100" layoutY="450" onAction="#handleRentCar" />
+
+    <!-- Przycisk do odbioru wynajętego samochodu -->
+    <Button fx:id="getRentedCarButton" text="Odbierz pojazd" layoutX="600" layoutY="300" onAction="#handleGetRentedCarButton" />
+
+    <!-- Label do wyświetlania wynajętego pojazdu -->
+    <Label fx:id="rentalStatusLabel" layoutX="100" layoutY="480" text="Status wynajmu: Brak" />
+
+    <!--  Spradzenie szczegółów klienta wynajmującego-->
+    <Button fx:id="showClientDetailsButton" text="Pokaż dane klienta" layoutX="700" layoutY="300" onAction="#handleRentedVehicleClicked" />
+
+    <!-- Label do wyświetlania danych klienta -->
+    <Label fx:id="clientDetailsLabel" layoutX="600" layoutY="320" prefWidth="300" prefHeight="100" text="" wrapText="true" />
+
+
+</AnchorPane>
