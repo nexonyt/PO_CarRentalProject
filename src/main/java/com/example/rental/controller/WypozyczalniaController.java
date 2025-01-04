@@ -35,30 +35,59 @@ public class WypozyczalniaController {
     @FXML
     private TextField driversLicenseTextField;
 
-    public void initialize() {
+    @FXML
+    private Label vehicleInfoTextArea;
 
+    public void initialize() {
         vehicles = new ArrayList<>();
         vehicles.add(new Car("Ford", "Mustang", 150.0, FuelType.DIESEL));
         vehicles.add(new Car("Audi", "A4", 130.0, FuelType.BENZYNA));
         vehicles.add(new Motocykl("Yamaha", "R1", 100.0, FuelType.DIESEL));
         vehicles.add(new Motocykl("Kawasaki", "Ninja", 90.0, FuelType.BENZYNA));
 
+
         List<String> vehicleDescriptions = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
-            vehicleDescriptions.add(vehicle.toString());
+            vehicleDescriptions.add(vehicle.getSimpleDescription());
         }
         vehicleListView.getItems().setAll(vehicleDescriptions);
-
 
         rentalStatusLabel.setText("Status wynajmu: Brak");
     }
 
+
+    public void showVehicleDetails() {
+        String selectedVehicleDescription = vehicleListView.getSelectionModel().getSelectedItem();
+
+        if (selectedVehicleDescription != null) {
+            try {
+                int selectedVehicleId = Integer.parseInt(selectedVehicleDescription.split(" ")[0].trim());
+
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle.getId() == selectedVehicleId) {
+                        vehicleInfoTextArea.setText(vehicle.getFullDescription());
+                        return;
+                    }
+                }
+
+                rentalStatusLabel.setText("Nie znaleziono pojazdu o ID: " + selectedVehicleId);
+            } catch (NumberFormatException e) {
+                rentalStatusLabel.setText("Błąd parsowania ID pojazdu: " + selectedVehicleDescription);
+            }
+        } else {
+            rentalStatusLabel.setText("Wybierz pojazd, aby zobaczyć szczegóły.");
+        }
+    }
+
+
     @FXML
     private void handleRentCar() {
-        String selectedVehicle = vehicleListView.getSelectionModel().getSelectedItem();
+        String selectedVehicleDescription = vehicleListView.getSelectionModel().getSelectedItem();
 
-        if (selectedVehicle != null) {
-            if (nameTextField.getText().isEmpty() || surnameTextField.getText().isEmpty() || ageTextField.getText().isEmpty() || driversLicenseTextField.getText().isEmpty()) {
+        if (selectedVehicleDescription != null) {
+            if (nameTextField.getText().isEmpty() || surnameTextField.getText().isEmpty() ||
+                    ageTextField.getText().isEmpty() || driversLicenseTextField.getText().isEmpty()) {
+
                 rentalStatusLabel.setText("Wszystkie pola muszą być wypełnione!");
             } else {
                 try {
@@ -70,7 +99,7 @@ public class WypozyczalniaController {
                     }
 
                     String name = nameTextField.getText();
-                    String surname = surnameTextField.getText();
+                    String surname = nameTextField.getText();
                     String driversLicenseNumber = driversLicenseTextField.getText();
 
                     if (driversLicenseNumber.length() < 6) {
@@ -79,6 +108,8 @@ public class WypozyczalniaController {
                     }
 
                     Client client = new Client(name, surname, age, driversLicenseNumber, false);
+
+                    int selectedVehicleId = Integer.parseInt(selectedVehicleDescription.split(" ")[0].trim());
 
                     for (Vehicle vehicle : vehicles) {
                         if (vehicle.getClient() != null && vehicle.getClient().getDriversLicenseNumber().equals(client.getDriversLicenseNumber())) {
@@ -89,18 +120,17 @@ public class WypozyczalniaController {
                         }
                     }
 
-
                     for (Vehicle vehicle : vehicles) {
-                        if (vehicle.toString().equals(selectedVehicle)) {
+                        if (vehicle.getId() == selectedVehicleId) {
                             vehicle.setClient(client);
+                            System.out.println("Klient przypisany do pojazdu: " + vehicle.getClient());
                             break;
                         }
                     }
 
-                    rentalStatusLabel.setText("Wynajęto pojazd: " + selectedVehicle + " przez " + client.getName() + " " + client.getSurname());
-
-                    vehicleRentedListView.getItems().add(selectedVehicle);
-                    vehicleListView.getItems().remove(selectedVehicle);
+                    rentalStatusLabel.setText("Wynajęto pojazd: " + selectedVehicleDescription + " przez " + client.getName() + " " + client.getSurname());
+                    vehicleRentedListView.getItems().add(selectedVehicleDescription);
+                    vehicleListView.getItems().remove(selectedVehicleDescription);
 
                 } catch (NumberFormatException e) {
                     rentalStatusLabel.setText("Wiek musi być liczbą!");
@@ -112,33 +142,45 @@ public class WypozyczalniaController {
     }
 
 
+
     @FXML
     private void handleBlockClient() {
-        String selectedRentedVehicle = vehicleRentedListView.getSelectionModel().getSelectedItem();
+        String selectedVehicleDescription = vehicleRentedListView.getSelectionModel().getSelectedItem();
 
-        if (selectedRentedVehicle != null) {
-
-            for (Vehicle vehicle : vehicles) {
-                if (vehicle.toString().equals(selectedRentedVehicle)) {
-                    Client client = vehicle.getClient();
-                    if (client != null) {
-                        if (client.getBlocked()) {
-                            rentalStatusLabel.setText("Klient " + client.getName() + " " + client.getSurname() + " jest już zablokowany.");
-                            return;
-                        }
-
-                        client.setBlocked(true);
-                        rentalStatusLabel.setText("Klient " + client.getName() + " " + client.getSurname() + " został zablokowany.");
+        if (selectedVehicleDescription != null) {
+            try {
+                int selectedVehicleId = Integer.parseInt(selectedVehicleDescription.split(" ")[0].trim());
+                System.out.println(selectedVehicleId);
+                Vehicle selectedVehicle = null;
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle.getId() == selectedVehicleId) {
+                        selectedVehicle = vehicle;
                         break;
-                    } else {
-                        rentalStatusLabel.setText("Brak klienta przypisanego do pojazdu.");
                     }
                 }
+
+                if (selectedVehicle == null) {
+                    rentalStatusLabel.setText("Nie znaleziono pojazdu o ID: " + selectedVehicleId);
+                    return;
+                }
+
+                if (selectedVehicle.getClient() != null) {
+
+                    selectedVehicle.getClient().setBlocked(true);
+                    rentalStatusLabel.setText("Klient " + selectedVehicle.getClient().getName() + " został zablokowany.");
+                } else {
+                    rentalStatusLabel.setText("Nie można zablokować klienta: brak powiązanego klienta.");
+                }
+            } catch (NumberFormatException e) {
+                rentalStatusLabel.setText("Błąd parsowania ID pojazdu.");
             }
         } else {
             rentalStatusLabel.setText("Wybierz pojazd, aby zablokować klienta.");
         }
     }
+
+
+
 
     @FXML
     private void handleGetRentedCarButton() {
@@ -175,22 +217,33 @@ public class WypozyczalniaController {
         String selectedRentedVehicle = vehicleRentedListView.getSelectionModel().getSelectedItem();
 
         if (selectedRentedVehicle != null) {
+            try {
+                int vehicleId = Integer.parseInt(selectedRentedVehicle.split(" ")[0]);
 
-            for (Vehicle vehicle : vehicles) {
-                if (vehicle.toString().equals(selectedRentedVehicle)) {
-                    Client client = vehicle.getClient();
-                    System.out.println(client);
-                    if (client != null) {
-                        String clientDetails = "Imię: " + client.getName() + "\n" + "Nazwisko: " + client.getSurname() + "\n" + "Wiek: " + client.getAge() + "\n" + "Nr prawa jazdy: " + client.getDriversLicenseNumber();
-                        clientDetailsLabel.setText(clientDetails);
-                    } else {
-                        clientDetailsLabel.setText("Brak danych klienta.");
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle.getId() == vehicleId) {
+                        Client client = vehicle.getClient();
+                        if (client != null) {
+                            String clientDetails = "Imię: " + client.getName() + "\n" +
+                                    "Nazwisko: " + client.getSurname() + "\n" +
+                                    "Wiek: " + client.getAge() + "\n" +
+                                    "Nr prawa jazdy: " + client.getDriversLicenseNumber();
+                            clientDetailsLabel.setText(clientDetails);
+                        } else {
+                            clientDetailsLabel.setText("Brak danych klienta.");
+                        }
+                        return;
                     }
-                    break;
                 }
+
+
+                clientDetailsLabel.setText("Nie znaleziono pojazdu o podanym ID.");
+            } catch (NumberFormatException e) {
+                clientDetailsLabel.setText("Nieprawidłowy format ID pojazdu.");
             }
         } else {
             clientDetailsLabel.setText("Wybierz pojazd, aby zobaczyć dane klienta.");
         }
     }
+
 }

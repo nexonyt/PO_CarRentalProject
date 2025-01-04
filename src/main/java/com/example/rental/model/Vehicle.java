@@ -9,10 +9,11 @@ public abstract class Vehicle {
     private static int nextId = 1; // Automatyczny inkrementator ID
     private int id;                // Unikalne ID pojazdu
     private Client client;         // Klient wynajmujący pojazd
+    private String model;
 
-
-    public Vehicle(String brand, VehicleType type, double pricePerDay) {
+    public Vehicle(String brand, String model,VehicleType type, double pricePerDay) {
         this.id = nextId++;
+        this.model = model;
         this.brand = brand;
         this.type = type;
         this.pricePerDay = pricePerDay;
@@ -38,6 +39,17 @@ public abstract class Vehicle {
 
     public void setClient(Client client) {
         this.client = client;
+
+    }
+
+
+    public String getFullDescription() {
+        return "ID: " + id + "\nMarka: " + brand + "\nModel: "+model+"\nTyp: " + type +
+                "\nCena za dzień: " + pricePerDay + " PLN/dzień\n";
+    }
+
+    public String getSimpleDescription() {
+        return id + " " + brand + " " + model;
     }
 
     @Override

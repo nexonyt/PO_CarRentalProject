@@ -7,8 +7,18 @@ public class Car extends Vehicle {
     private FuelType fuelType;
 
     public Car(String brand, String model, double pricePerDay, FuelType fuelType) {
-        super(brand, VehicleType.AUTO, pricePerDay);
+        super(brand, model,VehicleType.AUTO, pricePerDay);
         this.fuelType = fuelType;
+    }
+
+    @Override
+    public String getFullDescription() {
+        return super.getFullDescription() + "\nPaliwo: " + fuelType;
+    }
+
+    @Override
+    public String getSimpleDescription() {
+        return super.getSimpleDescription();
     }
 
     // Getters and Setters

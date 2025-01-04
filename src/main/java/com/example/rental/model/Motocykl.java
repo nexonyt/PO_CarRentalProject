@@ -8,7 +8,7 @@ public class Motocykl extends Vehicle {
     private FuelType fuelType;
 
     public Motocykl(String brand, String model, double pricePerDay, FuelType fuelType) {
-        super(brand, VehicleType.MOTOCYKL, pricePerDay);
+        super(brand,model, VehicleType.MOTOCYKL, pricePerDay);
         this.fuelType = fuelType;
     }
 
@@ -19,6 +19,16 @@ public class Motocykl extends Vehicle {
 
     public FuelType getFuelType() {
         return fuelType;
+    }
+
+    @Override
+    public String getFullDescription() {
+        return super.getFullDescription() + "\nPaliwo: " + fuelType;
+    }
+
+    @Override
+    public String getSimpleDescription() {
+        return super.getSimpleDescription();
     }
 
     public void setFuelType(FuelType fuelType) {
