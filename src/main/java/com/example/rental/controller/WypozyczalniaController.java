@@ -11,7 +11,7 @@ import com.example.rental.model.Car;
 import com.example.rental.model.Motocykl;
 import com.example.rental.model.Vehicle;
 import com.example.rental.model.Client;
-
+import com.example.rental.enums.FuelType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,23 +41,23 @@ public class WypozyczalniaController {
     private List<Vehicle> vehicles;
 
     @FXML
-    private TextField nameTextField;  // Nowe pole tekstowe
+    private TextField nameTextField;
     @FXML
-    private TextField surnameTextField;  // Nowe pole tekstowe
+    private TextField surnameTextField;
     @FXML
-    private TextField ageTextField;  // Nowe pole tekstowe
+    private TextField ageTextField;
     @FXML
-    private TextField driversLicenseTextField;  // Nowe pole tekstowe
+    private TextField driversLicenseTextField;
 
 
     @FXML
     public void initialize() {
 
         vehicles = new ArrayList<>();
-        vehicles.add(new Car("Ford", "Mustang", 150.0, "diesel"));
-        vehicles.add(new Car("Audi", "A4", 130.0, "benzyna"));
-        vehicles.add(new Motocykl("Yamaha", "R1", 100.0, "Blue", "R1YAMA"));
-        vehicles.add(new Motocykl("Kawasaki", "Ninja", 90.0, "Blue", "P1NINJA"));
+        vehicles.add(new Car("Ford", "Mustang", 150.0, FuelType.DIESEL));
+        vehicles.add(new Car("Audi", "A4", 130.0, FuelType.BENZYNA));
+        vehicles.add(new Motocykl("Yamaha", "R1", 100.0, FuelType.DIESEL));
+        vehicles.add(new Motocykl("Kawasaki", "Ninja", 90.0, FuelType.BENZYNA));
 
 
         List<String> vehicleDescriptions = new ArrayList<>();
@@ -153,10 +153,10 @@ public class WypozyczalniaController {
         String selectedRentedVehicle = vehicleRentedListView.getSelectionModel().getSelectedItem();
 
         if (selectedRentedVehicle != null) {
-            // Szukamy pojazdu w liście wynajętych
+
             for (Vehicle vehicle : vehicles) {
                 if (vehicle.toString().equals(selectedRentedVehicle)) {
-                    Client client = vehicle.getClient(); // Pobieramy klienta
+                    Client client = vehicle.getClient();
                     if (client != null) {
                         String clientDetails = "Imię: " + client.getName() + "\n" + "Nazwisko: " + client.getSurname() + "\n" + "Wiek: " + client.getAge() + "\n" + "Nr prawa jazdy: " + client.getDriversLicenseNumber();
                         clientDetailsLabel.setText(clientDetails);

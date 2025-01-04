@@ -1,13 +1,27 @@
 package com.example.rental.model;
 
-public class Car extends Vehicle {
+import com.example.rental.enums.VehicleType;
+import com.example.rental.enums.FuelType;
 
-    public Car(String brand, String model, double pricePerDay, String engineType) {
-        super(brand, model, pricePerDay);
+public class Car extends Vehicle {
+    private FuelType fuelType;
+
+    public Car(String brand, String model, double pricePerDay, FuelType fuelType) {
+        super(brand, VehicleType.AUTO, pricePerDay);
+        this.fuelType = fuelType;
     }
 
+    // Getters and Setters
+    public FuelType getFuelType() {
+        return fuelType;
+    }
 
-    public String getType() {
-        return "Car";
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Paliwo: " + fuelType;
     }
 }
