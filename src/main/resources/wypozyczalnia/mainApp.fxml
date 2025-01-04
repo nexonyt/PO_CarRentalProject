@@ -12,10 +12,10 @@
     <Label fx:id="label" layoutX="100" layoutY="30" text="Witaj w wypożyczalni samochodów!" />
 
     <!-- Lista dostępnych pojazdów (samochodów i motocykli) -->
-    <ListView fx:id="vehicleListView" layoutX="100" layoutY="70" prefWidth="400" prefHeight="200" />
+    <ListView fx:id="vehicleListView" layoutX="100" layoutY="70" prefWidth="450" prefHeight="200" />
 
     <!-- Lista wypożyczonych pojazdów (samochodów i motocykli) -->
-    <ListView fx:id="vehicleRentedListView" layoutX="600" layoutY="70" prefWidth="400" prefHeight="200" />
+    <ListView fx:id="vehicleRentedListView" layoutX="600" layoutY="70" prefWidth="450" prefHeight="200" />
 
     <!-- Pola do wprowadzania danych klienta -->
     <TextField fx:id="nameTextField" layoutX="100" layoutY="320" promptText="Imię"/>
@@ -38,5 +38,7 @@
     <!-- Label do wyświetlania danych klienta -->
     <Label fx:id="clientDetailsLabel" layoutX="600" layoutY="320" prefWidth="300" prefHeight="100" text="" wrapText="true" />
 
+    <!--    Blokada użytkownika-->
+    <Button fx:id="blockClientButton" layoutX="820" layoutY="300" text="Zablokuj klienta" onAction="#handleBlockClient"/>
 
 </AnchorPane>

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.rental.model.Car;
 
-
 public class Wypozyczalnia {
     private List<Car> pojazdy;
 

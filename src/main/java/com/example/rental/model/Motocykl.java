@@ -1,5 +1,5 @@
 package com.example.rental.model;
-
+import com.example.rental.model.Vehicle;
 import com.example.rental.enums.FuelType;
 import com.example.rental.enums.VehicleType;
 

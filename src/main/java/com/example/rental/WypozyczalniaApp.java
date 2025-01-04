@@ -13,8 +13,8 @@ public class WypozyczalniaApp extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/wypozyczalnia/mainApp.fxml"));
         AnchorPane root = loader.load();
 
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setTitle("Wypożyczalnia Samochodów i Motocykli");
+        Scene scene = new Scene(root, 1200, 600);
+        stage.setTitle("Centrum zarządzania wypożyczalnią pojazdów (samochodów i motocykli)");
 
         stage.setScene(scene);
         stage.show();
