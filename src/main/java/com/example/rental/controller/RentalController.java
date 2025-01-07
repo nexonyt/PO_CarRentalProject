@@ -6,14 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import com.example.rental.model.Car;
-import com.example.rental.model.Motocykl;
+import com.example.rental.model.Motorbike;
 import com.example.rental.model.Vehicle;
 import com.example.rental.model.Client;
 import com.example.rental.enums.FuelType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WypozyczalniaController {
+public class RentalController {
 
     @FXML
     private Label label;
@@ -42,8 +42,8 @@ public class WypozyczalniaController {
         vehicles = new ArrayList<>();
         vehicles.add(new Car("Ford", "Mustang", 150.0, FuelType.DIESEL));
         vehicles.add(new Car("Audi", "A4", 130.0, FuelType.BENZYNA));
-        vehicles.add(new Motocykl("Yamaha", "R1", 100.0, FuelType.DIESEL));
-        vehicles.add(new Motocykl("Kawasaki", "Ninja", 90.0, FuelType.BENZYNA));
+        vehicles.add(new Motorbike("Yamaha", "R1", 100.0, FuelType.DIESEL));
+        vehicles.add(new Motorbike("Kawasaki", "Ninja", 90.0, FuelType.BENZYNA));
 
 
         List<String> vehicleDescriptions = new ArrayList<>();

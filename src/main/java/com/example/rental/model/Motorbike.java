@@ -1,14 +1,13 @@
 package com.example.rental.model;
-import com.example.rental.model.Vehicle;
 import com.example.rental.enums.FuelType;
 import com.example.rental.enums.VehicleType;
 
-public class Motocykl extends Vehicle {
+public class Motorbike extends Vehicle {
 
     private FuelType fuelType;
 
-    public Motocykl(String brand, String model, double pricePerDay, FuelType fuelType) {
-        super(brand,model, VehicleType.MOTOCYKL, pricePerDay);
+    public Motorbike(String brand, String model, double pricePerDay, FuelType fuelType) {
+        super(brand,model, VehicleType.MOTORBIKE, pricePerDay);
         this.fuelType = fuelType;
     }
 
