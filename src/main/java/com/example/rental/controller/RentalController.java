@@ -41,9 +41,9 @@ public class RentalController {
     public void initialize() {
         vehicles = new ArrayList<>();
         vehicles.add(new Car("Ford", "Mustang", 150.0, FuelType.DIESEL));
-        vehicles.add(new Car("Audi", "A4", 130.0, FuelType.BENZYNA));
+        vehicles.add(new Car("Audi", "A4", 130.0, FuelType.PETROL));
         vehicles.add(new Motorbike("Yamaha", "R1", 100.0, FuelType.DIESEL));
-        vehicles.add(new Motorbike("Kawasaki", "Ninja", 90.0, FuelType.BENZYNA));
+        vehicles.add(new Motorbike("Kawasaki", "Ninja", 90.0, FuelType.PETROL));
 
 
         List<String> vehicleDescriptions = new ArrayList<>();
