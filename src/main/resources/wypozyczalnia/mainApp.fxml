@@ -7,7 +7,7 @@
 
 <!-- MK: Comments in Polish language for better understaning -->
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.rental.controller.WypozyczalniaController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.rental.controller.RentalController">
     <!-- Label wyświetlający powitanie i status wynajmu -->
     <Label fx:id="label" layoutX="100" layoutY="30" text="Witaj w wypożyczalni samochodów!" />
 
