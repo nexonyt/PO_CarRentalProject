@@ -40,10 +40,10 @@ public class RentalController {
 
     public void initialize() {
         vehicles = new ArrayList<>();
-        vehicles.add(new Car("Ford", "Mustang", 150.0, FuelType.DIESEL));
-        vehicles.add(new Car("Audi", "A4", 130.0, FuelType.PETROL));
-        vehicles.add(new Motorbike("Yamaha", "R1", 100.0, FuelType.DIESEL));
-        vehicles.add(new Motorbike("Kawasaki", "Ninja", 90.0, FuelType.PETROL));
+        vehicles.add(new Car("Ford", "Mustang", 150.00, FuelType.DIESEL,40500));
+        vehicles.add(new Car("Audi", "A4", 130.00, FuelType.BENZYNA,32700));
+        vehicles.add(new Motorbike("Yamaha", "R1", 100.00, FuelType.DIESEL,12000));
+        vehicles.add(new Motorbike("Kawasaki", "Ninja", 90.00, FuelType.BENZYNA,7600));
 
 
         List<String> vehicleDescriptions = new ArrayList<>();
@@ -89,7 +89,12 @@ public class RentalController {
                     ageTextField.getText().isEmpty() || driversLicenseTextField.getText().isEmpty()) {
 
                 rentalStatusLabel.setText("Wszystkie pola muszą być wypełnione!");
-            } else {
+
+            }
+            else if (!nameTextField.getText().matches("[a-zA-Z]+") || !surnameTextField.getText().matches("[a-zA-Z]+")) {
+                    rentalStatusLabel.setText("Imię i nazwisko mogą zawierać tylko litery!");
+            }
+            else {
                 try {
                     int age = Integer.parseInt(ageTextField.getText());
 

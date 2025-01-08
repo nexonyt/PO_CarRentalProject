@@ -5,15 +5,16 @@ import com.example.rental.enums.VehicleType;
 public class Motorbike extends Vehicle {
 
     private FuelType fuelType;
+    public int vehicleMileage;
 
-    public Motorbike(String brand, String model, double pricePerDay, FuelType fuelType) {
-        super(brand,model, VehicleType.MOTORBIKE, pricePerDay);
+    public Motorbike(String brand, String model, double pricePerDay, FuelType fuelType, int vehicleMileage) {
+        super(brand,model, VehicleType.MOTOCYKL, pricePerDay,vehicleMileage);
         this.fuelType = fuelType;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", Paliwo: " + fuelType;
+        return super.toString() + "\nPaliwo: " + fuelType;
     }
 
     public FuelType getFuelType() {

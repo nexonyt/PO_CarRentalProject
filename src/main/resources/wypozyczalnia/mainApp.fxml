@@ -9,7 +9,7 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.rental.controller.RentalController">
     <!-- Label wyświetlający powitanie i status wynajmu -->
-    <Label fx:id="label" layoutX="100" layoutY="30" text="Witaj w wypożyczalni samochodów!" />
+    <Label fx:id="label" layoutX="100" layoutY="10" text="Witaj w centrum zarządzania wypożyczalnią samochodów i motocykli!" />
 
     <!-- Label wyświetlający powitanie i status wynajmu -->
     <Label fx:id="labelForRentalUser" layoutX="100" layoutY="290" text="Podaj dane osoby wypożyczającej:" />
@@ -19,6 +19,9 @@
 
     <!-- Lista wypożyczonych pojazdów (samochodów i motocykli) -->
     <ListView fx:id="vehicleRentedListView" layoutX="600" layoutY="70" prefWidth="450" prefHeight="200" />
+
+    <Label fx:id="listOfRentedVehiclesText" layoutX="100" layoutY="40" text="Lista wypożyczonych samochodów"/>
+    <Label fx:id="listOfAvailableVehiclesText" layoutX="600" layoutY="40" text="Lista dostępnych samochodów"/>
 
     <!-- Pola do wprowadzania danych klienta -->
     <TextField fx:id="nameTextField" layoutX="100" layoutY="320" promptText="Imię"/>
@@ -45,7 +48,7 @@
     <Label fx:id="clientDetailsLabel" layoutX="600" layoutY="320" prefWidth="300" prefHeight="100" text="" wrapText="true" />
 
     <!-- Label do wyświetlania szczegółów pojazdu -->
-    <Label fx:id="vehicleInfoTextArea" layoutX="350" layoutY="330" prefWidth="300" prefHeight="100" text="" wrapText="true" />
+    <Label fx:id="vehicleInfoTextArea" layoutX="350" layoutY="330" prefWidth="300" prefHeight="150" text="" wrapText="true" />
 
     <!--    Blokada użytkownika-->
     <Button fx:id="blockClientButton" layoutX="820" layoutY="300" text="Zablokuj klienta" onAction="#handleBlockClient"/>
