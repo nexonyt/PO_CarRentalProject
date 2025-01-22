@@ -44,6 +44,10 @@ public class RentalController {
         vehicles.add(new Car("Audi", "A4", 130.00, FuelType.BENZYNA,32700));
         vehicles.add(new Motorbike("Yamaha", "R1", 100.00, FuelType.DIESEL,12000));
         vehicles.add(new Motorbike("Kawasaki", "Ninja", 90.00, FuelType.BENZYNA,7600));
+        vehicles.add(new Motorbike("BMW", "M3", 450.00, FuelType.BENZYNA,700));
+        vehicles.add(new Motorbike("Nissan", "350Z", 290.00, FuelType.BENZYNA,4200));
+        vehicles.add(new Motorbike("Volkswagen", "Golf 7", 190.00, FuelType.BENZYNA,75900));
+        vehicles.add(new Motorbike("Mercedes", "Vito", 174.00, FuelType.BENZYNA,28300));
 
 
         List<String> vehicleDescriptions = new ArrayList<>();
